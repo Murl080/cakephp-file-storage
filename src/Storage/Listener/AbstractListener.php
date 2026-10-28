@@ -308,9 +308,9 @@ abstract class AbstractListener implements EventListenerInterface
      * Get the path for a storage entity.
      *
      * @param \Cake\Event\Event $event
-     * @return string
+     * @return void
      */
-    public function getPath(Event $event): string
+    public function getPath(Event $event): void
     {
         $pathBuilder = $this->pathBuilder();
         $method = $event->getData('method');
@@ -325,7 +325,7 @@ abstract class AbstractListener implements EventListenerInterface
         ]);
 
         if ($event->isStopped()) {
-            return $event->getResult();
+            return;
         }
 
         if ($event->getSubject() instanceof EntityInterface) {
@@ -347,10 +347,10 @@ abstract class AbstractListener implements EventListenerInterface
         ]);
 
         if ($event->isStopped()) {
-            return $event->getResult();
+            return;
         }
 
-        return $path;
+        $event->setResult($path);
     }
 
     /**
