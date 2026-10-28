@@ -104,7 +104,9 @@ class FileStorageBehavior extends Behavior
         if (!$this->_isFileUploadPresent($entity)) {
             $event->stopPropagation();
 
-            return false;
+            $event->setResult(false);
+
+            return;
         }
 
         $this->_checkEntityBeforeSave($entity);
@@ -114,7 +116,7 @@ class FileStorageBehavior extends Behavior
             'storageAdapter' => $this->getStorageAdapter($entity->get('adapter')),
         ], $this->_table);
 
-        return true;
+        $event->setResult(true);
     }
 
     /**
