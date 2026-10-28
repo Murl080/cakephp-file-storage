@@ -99,7 +99,7 @@ class FileStorageBehavior extends Behavior
      * @param \ArrayObject $options The options for the query
      * @return void
      */
-    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): bool
+    public function beforeSave(EventInterface $event, EntityInterface $entity, ArrayObject $options): void
     {
         if (!$this->_isFileUploadPresent($entity)) {
             $event->stopPropagation();
